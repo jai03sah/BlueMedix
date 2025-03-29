@@ -1,0 +1,11 @@
+{
+  "name": "bluemedix---copy",
+  "version": "1.0.0",
+  "description": "This repository contains the backend API for the BlueMedix medical supply management system.",
+  "main": "api-test.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
