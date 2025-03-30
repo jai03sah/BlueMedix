@@ -4,6 +4,7 @@ import Logout from '../auth/Logout';
 
 const ManagerLayout = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const user = JSON.parse(localStorage.getItem('user'));
@@ -25,7 +26,7 @@ const ManagerLayout = ({ children }) => {
           <Link 
             to="/manager/dashboard" 
             className={`block py-2.5 px-4 rounded transition duration-200 ${isActive('/manager/dashboard')}`}
-          >
+          > 
             Dashboard
           </Link>
           <Link 
@@ -72,15 +73,18 @@ const ManagerLayout = ({ children }) => {
           
           <div className="flex items-center">
             <div className="relative">
-              <button className="flex items-center space-x-2 focus:outline-none">
-                <span className="text-gray-700">{user?.name}</span>
+              <button  
+                onClick={() => setDropdownOpen(!dropdownOpen)} 
+               className="flex items-center space-x-2 focus:outline-none">
+                <span className="text-gray-700">{user?.name}</span> 
                 <img 
                   className="h-8 w-8 rounded-full object-cover"
                   src={user?.img_url || "https://ui-avatars.com/api/?name=" + encodeURIComponent(user?.name || "Manager")}
                   alt="Profile"
-                />
-              </button>
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block">
+                /> 
+              </button> 
+              {dropdownOpen && ( /* Dropdown menu */
+              <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 ">
                 <Link 
                   to="/manager/profile" 
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
@@ -90,10 +94,12 @@ const ManagerLayout = ({ children }) => {
                 <Link
                   to="/manager/logout"
                   className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                  onClick={() => setDropdownOpen(false)} 
                 >
                   Sign out
                 </Link>
               </div>
+            )}
             </div>
           </div>
         </header>

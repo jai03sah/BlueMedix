@@ -52,7 +52,7 @@ POST /api/auth/create-admin
 {
   "name": "Admin User",
   "email": "admin@example.com",
-  "password": "admin123",
+  "password": "SecurePassword123!",
   "phone": "1234567890",
   "adminSecretKey": "BluemedixAdmin"
 }
